@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { AppWrapper } from "@/context";
+import SideBar from "@/components/SideBar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,12 +14,22 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="h-screen w-screen">
+        <AppWrapper>
+          <div className="h-full w-full flex flex-col">
+            <div className="flex flex-row flex-grow">
+              <SideBar />
+              {children}
+            </div>
+            <Footer />
+          </div>
+        </AppWrapper>
+      </body>
     </html>
   );
 }

@@ -9,9 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "custom-radial":
+          "radial-gradient(50% 50% at 50% 50%, #0C3747 0%, rgba(12, 55, 71, 0) 100%)",
+      },
+      fontFamily: {
+        sofia: ["Sofia Pro", "sans-serif"],
       },
     },
   },
