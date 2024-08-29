@@ -7,7 +7,7 @@ import facebook from "@/app/assets/facebook.svg";
 
 function Footer() {
   return (
-    <main className="flex flex-row justify-between px-[5%] py-4 border-t-2 font-normal">
+    <main className="flex flex-row justify-between px-[5%] py-4 border-t-2 font-normal max-md:flex-col max-md:gap-8 max-md:items-center max-md:py-10 max-md:ml-20 max-md:border-l-2">
       <div className="text-[10px]">© 2024 Shōden Ltd. All Rights Reserved.</div>
       <div className="flex flex-row gap-4 text-[12px]">
         <span>Terms & Condition</span>

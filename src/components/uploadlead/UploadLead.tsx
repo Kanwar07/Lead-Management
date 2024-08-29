@@ -17,9 +17,10 @@ export default function UploadLead() {
     if (csvfile && csvfile.type === "text/csv") {
       setfile(csvfile);
       Papa.parse(csvfile, {
+        skipEmptyLines: true,
         complete: (results: Papa.ParseResult<any>) => {
           setleads(results.data);
-          setleadslength(results.data.length - 2);
+          setleadslength(results.data.length - 1);
         },
       });
     } else {
@@ -35,7 +36,7 @@ export default function UploadLead() {
     }
   };
   return (
-    <div className="mx-[5%] my-4 bg-[#ffffff]">
+    <div className="mx-[5%] my-4 bg-[#ffffff] ml-20">
       <div className="border border-2 px-4 py-2 rounded-t-xl">
         <h1 className="text-[16px] font-semibold">Upload lead list</h1>
         <p className="text-[12px] font-normal">
@@ -46,7 +47,7 @@ export default function UploadLead() {
       <div className="border-x-2 border-b-2 rounded-b-xl flex flex-col">
         <div className="w-full flex flex-col items-center">
           {file ? (
-            <div className="bg-[f9f9fe] flex flex-row items-center justify-between border-2 border-[#8C57EA] rounded-xl gap-80 px-6 w-fit py-6 my-10">
+            <div className="bg-[f9f9fe] flex flex-row items-center justify-between border-2 border-[#8C57EA] rounded-xl gap-80 px-6 w-fit py-6 my-10 max-md:flex-col max-md:gap-4">
               <div className="flex flex-row items-center gap-4">
                 <Image src={filecsv} alt="filecsv" height={50} width={50} />
                 <div className="flex flex-col">
@@ -69,7 +70,7 @@ export default function UploadLead() {
                   />
                 </label>
                 <span
-                  className="text-[#EB5757] text-[12px] font-medium"
+                  className="text-[#EB5757] text-[12px] font-medium cursor-pointer"
                   onClick={removefile}
                 >
                   Delete
@@ -77,7 +78,7 @@ export default function UploadLead() {
               </div>
             </div>
           ) : (
-            <div className="bg-[#f9f8fe] flex flex-col items-center border-dashed border-2 border-[#8C57EA] rounded-xl w-fit px-20 py-6 my-10">
+            <div className="bg-[#f9f8fe] flex flex-col items-center border-dashed border-2 border-[#8C57EA] rounded-xl w-fit px-20 py-6 my-10 max-md:flex-col max-md:gap-4 max-md:px-10 max-md:py-3">
               <Image
                 src={draganddrop}
                 alt="draganddrop"
@@ -101,7 +102,7 @@ export default function UploadLead() {
               </span>
             </div>
           )}
-          <div className="flex flex-row justify-between gap-80 text-[14px]">
+          <div className="flex flex-row justify-between gap-80 text-[14px] max-md:flex-col max-md:gap-4">
             <span className="text-[#000000] font-medium">
               Fields Formatting
             </span>
@@ -109,53 +110,53 @@ export default function UploadLead() {
               Download/View sample
             </button>
           </div>
-          <div className="flex flex-row gap-20 my-6 text-[12px] font-normal text-[#475569]">
-            <div className="flex flex-col">
-              <span className="text-[#000000] font-medium">Company name</span>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>google</span>
-              </div>
-              <span className="my-4 text-[#94A3B8]">
-                --------- or ---------
-              </span>
-              <span className="text-[#000000] font-medium">Company domain</span>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>google.com</span>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>https://www.google.com/</span>
-              </div>
+        </div>
+
+        <div className="flex flex-row gap-20 my-6 text-[12px] font-normal text-[#475569] max-md:flex-col max-md:gap-4">
+          <div className="flex flex-col max-md:pl-4">
+            <span className="text-[#000000] font-medium">Company name</span>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <span>google</span>
             </div>
-            <div className="flex flex-col">
-              <span className="text-[#000000] font-medium">
-                LinkedIn Profile URL
-              </span>
-              <span className="mt-4 text-[#000000] font-medium">
-                Allowed: Regular Linkedin URL
-              </span>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>https://linkedin.com/in/marcbenioff</span>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>https://www.google.com/</span>
-              </div>
-              <span className="mt-4 text-[#000000] font-medium">
-                Not Allowed: Sales Navigator URL
-              </span>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>https://linkedin.com/in/marcbenioff</span>
-              </div>
-              <div className="flex flex-row items-center gap-2">
-                <Image src={tick} alt="tick" height={10} width={10} />
-                <span>
-                  https://www.linkedin.com/sales/people/ACoAAAAAPwEB4dd
-                </span>
+            <span className="my-4 text-[#94A3B8]">--------- or ---------</span>
+            <span className="text-[#000000] font-medium">Company domain</span>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <span>google.com</span>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <span>https://www.google.com/</span>
+            </div>
+          </div>
+
+          <div className="flex flex-col max-md:pl-4">
+            <span className="text-[#000000] font-medium">
+              LinkedIn Profile URL
+            </span>
+            <span className="mt-4 text-[#000000] font-medium">
+              Allowed: Regular Linkedin URL
+            </span>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <span>https://linkedin.com/in/marcbenioff</span>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <span>https://www.google.com/</span>
+            </div>
+            <span className="mt-4 text-[#000000] font-medium">
+              Not Allowed: Sales Navigator URL
+            </span>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <span>https://linkedin.com/in/marcbenioff</span>
+            </div>
+            <div className="flex flex-row items-center gap-2">
+              <Image src={tick} alt="tick" height={10} width={10} />
+              <div className="max-md:w-60 max-md:overflow-hidden max-md:text-ellipsis max-md:whitespace-nowrap">
+                https://www.linkedin.com/sales/people/ACoAAAAAPwEB4dd
               </div>
             </div>
           </div>
