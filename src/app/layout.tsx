@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppWrapper } from "@/context";
 import SideBar from "@/components/SideBar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="h-screen w-screen">
         <AppWrapper>
+          <Toaster position="bottom-center" toastOptions={{ duration: 2000 }} />
           <div className="h-full w-full flex flex-col">
             <div className="flex flex-row flex-grow">
               <SideBar />

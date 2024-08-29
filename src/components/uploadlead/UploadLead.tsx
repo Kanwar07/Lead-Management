@@ -7,6 +7,7 @@ import { ChangeEvent } from "react";
 import { useAppContext } from "@/context";
 import filecsv from "@/app/assets/filecsv.svg";
 import Papa from "papaparse";
+import toast from "react-hot-toast";
 
 export default function UploadLead() {
   const { file, setfile, leadslength, setleadslength, leads, setleads } =
@@ -21,18 +22,20 @@ export default function UploadLead() {
         complete: (results: Papa.ParseResult<any>) => {
           setleads(results.data);
           setleadslength(results.data.length - 1);
+          toast.success("File Successfully Uploaded");
         },
       });
     } else {
-      console.log("Please select a valid CSV file.");
+      toast.error("Please select a valid CSV file");
     }
   };
 
   const removefile = () => {
     if (file) {
       setfile("");
+      toast.success("Successfully Deleted");
     } else {
-      console.log("Please select a file first");
+      toast.error("Please select a file first");
     }
   };
   return (
@@ -112,7 +115,7 @@ export default function UploadLead() {
           </div>
         </div>
 
-        <div className="flex flex-row gap-20 my-6 text-[12px] font-normal text-[#475569] max-md:flex-col max-md:gap-4">
+        <div className="flex flex-row justify-center gap-20 my-6 text-[12px] font-normal text-[#475569] max-md:flex-col max-md:gap-4">
           <div className="flex flex-col max-md:pl-4">
             <span className="text-[#000000] font-medium">Company name</span>
             <div className="flex flex-row items-center gap-2">

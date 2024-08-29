@@ -4,6 +4,7 @@ import Image from "next/image";
 import arrowback from "@/app/assets/arrowback.svg";
 import { useAppContext } from "@/context";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function TitleSectionValidation() {
   const { file, setfile } = useAppContext();
@@ -11,8 +12,9 @@ export default function TitleSectionValidation() {
   const removefile = () => {
     if (file) {
       setfile("");
+      toast.success("Successfully Deleted");
     } else {
-      console.log("Please select a file first");
+      toast.error("Please select a file first");
     }
   };
 

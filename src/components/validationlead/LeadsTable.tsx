@@ -1,17 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useAppContext } from "@/context";
+import Link from "next/link";
 
 export default function LeadsTable() {
   const { file, leads, setleads } = useAppContext();
-  const editableRefs = useRef<(HTMLTableCellElement | null)[]>([]);
+  const [editableLeads, setEditableLeads] = useState([...leads]);
 
-  const handleCellBlur = (rowIndex: number, fieldIndex: number) => {
-    const cell = editableRefs.current[rowIndex]?.childNodes[fieldIndex];
-    if (cell && cell.textContent) {
-      const updatedLeads = [...leads];
-      updatedLeads[rowIndex + 1][fieldIndex] = cell.textContent;
-      setleads(updatedLeads);
-    }
+  const handleCellBlur = (
+    rowIndex: number,
+    fieldIndex: number,
+    event: React.FocusEvent<HTMLTableCellElement>
+  ) => {
+    const updatedLeads = [...editableLeads];
+    updatedLeads[rowIndex][fieldIndex] = event.target.textContent || "";
+    setEditableLeads(updatedLeads);
+    setleads(updatedLeads);
   };
 
   return (
@@ -47,13 +50,8 @@ export default function LeadsTable() {
                     <td
                       key={fieldIndex}
                       contentEditable="true"
-                      ref={(el) => {
-                        if (!editableRefs.current[rowIndex]) {
-                          editableRefs.current[rowIndex] = el;
-                        }
-                      }}
                       className="border-y-2 border-r-2 border-[#E2E8F0] py-3 px-4 text-[12px] font-normal text-left text-[#475569]"
-                      onBlur={() => handleCellBlur(rowIndex, fieldIndex)}
+                      onBlur={(e) => handleCellBlur(rowIndex, fieldIndex, e)}
                       suppressContentEditableWarning={true}
                     >
                       {field}
@@ -63,7 +61,16 @@ export default function LeadsTable() {
               ))}
           </tbody>
         </table>
-      ) : null}
+      ) : (
+        <div className="w-full h-fill flex justify-center items-center">
+          <Link
+            href="/lead"
+            className="border-2 border-[#8C57EA] text-[#8C57EA] text-[12px] font-normal bg-[#eadfff] px-4 py-2 rounded-[28px] max-md:rounded-2xl"
+          >
+            Go to Leads
+          </Link>
+        </div>
+      )}
     </>
   );
 }

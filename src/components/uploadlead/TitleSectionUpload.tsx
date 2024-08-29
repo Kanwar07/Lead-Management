@@ -3,6 +3,8 @@
 import Image from "next/image";
 import arrowback from "@/app/assets/arrowback.svg";
 import { useAppContext } from "@/context";
+import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function TitleSectionUpload() {
   const { file, setfile } = useAppContext();
@@ -10,15 +12,24 @@ export default function TitleSectionUpload() {
   const removefile = () => {
     if (file) {
       setfile("");
+      toast.success("Successfully Deleted");
     } else {
-      console.log("Please select a file first");
+      toast.error("Please select a file first");
     }
   };
 
   return (
     <div className="flex flex-row justify-between px-[5%] py-6 border-2 rounded-b-lg ml-20 bg-[#ffffff] max-md:flex-col max-md:gap-6 max-md:items-center">
       <div className="flex flex-row items-center gap-2">
-        <Image src={arrowback} alt="arrowback" height={25} width={25} />
+        <Link href="/">
+          <Image
+            src={arrowback}
+            alt="arrowback"
+            height={25}
+            width={25}
+            className="cursor-pointer"
+          />
+        </Link>
         {file ? (
           <span className="text-[20px] font-semibold text-[#080F1B] max-md:mr-10">
             {file.name}

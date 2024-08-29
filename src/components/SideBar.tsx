@@ -54,7 +54,9 @@ function Sidebar() {
           Main
         </span>
         <button
-          className={`flex items-center gap-2 ${!open && "overflow-hidden"}`}
+          className={`flex items-center gap-2 ${
+            open ? "rounded-3xl pt-2 pl-2" : "overflow-hidden"
+          }`}
         >
           <Image
             src={chat}
@@ -70,7 +72,9 @@ function Sidebar() {
           )}
         </button>
         <button
-          className={`flex items-center gap-2 ${!open && "overflow-hidden"}`}
+          className={`flex items-center gap-2 ${
+            open ? "rounded-3xl pt-2 pl-2" : "overflow-hidden"
+          }`}
         >
           <Image
             src={campaign}
@@ -84,7 +88,9 @@ function Sidebar() {
           )}
         </button>
         <button
-          className={`flex items-center gap-2 ${!open && "overflow-hidden"}`}
+          className={`flex items-center gap-2 ${
+            open ? "rounded-3xl pt-2 pl-2" : "overflow-hidden"
+          }`}
         >
           <Image
             src={mail}
@@ -99,7 +105,11 @@ function Sidebar() {
         </button>
         <Link
           href="/lead"
-          className={`flex items-center gap-2 ${!open && "overflow-hidden"}`}
+          className={`flex items-center gap-2 ${
+            open
+              ? "bg-[#f9f8fe] rounded-3xl py-2 pl-2 pr-20"
+              : "overflow-hidden"
+          }`}
         >
           <Image
             src={leads}
@@ -113,7 +123,9 @@ function Sidebar() {
           )}
         </Link>
         <button
-          className={`flex items-center gap-2 ${!open && "overflow-hidden"}`}
+          className={`flex items-center gap-2 ${
+            open ? "rounded-3xl pt-2 pl-2" : "overflow-hidden"
+          }`}
         >
           <Image
             src={settings}
